@@ -145,3 +145,7 @@ The challenge at hand spawned a series of projects, using the cipher's own logic
 -   [Svelte](https://svelte.dev/repl/dfc6983e51b14fa5bcb941fe1afc614f). Implemented on Svelte's own REPL, an excuse to showcase a reactive variable.
 
 -   [React](https://codepen.io/borntofrappe/pen/MWYePYa). Implemented on CodePen, an excuse to use hooks.
+
+-   **script.js**. This script can actually be run in a terminal equipped with node. Type `node script` to display the encoded message.
+
+-   **cipher.js**. This script updates the logic described in `script.js` to encode strings passed as arguments of the node command. Type `node cipher something`, or `node cipher "something else" "indeed"` and the characters are encoded and logged in the console. <!-- for reference: `fbzrguvat` and `fbzrguvat ryfr \n vaqrrq` -->
