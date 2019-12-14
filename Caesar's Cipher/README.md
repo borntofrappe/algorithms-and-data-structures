@@ -144,7 +144,7 @@ The challenge at hand spawned a series of projects, using the cipher's own logic
 
 -   [Svelte](https://svelte.dev/repl/dfc6983e51b14fa5bcb941fe1afc614f). Implemented on Svelte's own REPL, an excuse to showcase a reactive variable.
 
--   [React](https://codepen.io/borntofrappe/pen/MWYePYa). Implemented on CodePen, an excuse to use hooks.
+-   [React](https://codepen.io/borntofrappe/pen/MWYePYa). Implemented on CodePen, an excuse to use hooks. The project actually creates a fake terminal showcasing how an hypothetical script can be executed in the terminal to encode/decode an input string (similarly to `cipher.js`, but more on that soon).
 
 -   **script.js**. This script can actually be run in a terminal equipped with node. Type `node script` to display the encoded message.
 

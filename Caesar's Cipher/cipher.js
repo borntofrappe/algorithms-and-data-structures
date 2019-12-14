@@ -30,7 +30,11 @@ if (messages.length) {
     });
 
     read.question('Type something to encode/decode: ', message => {
-        console.log(`\n${cipher(message)}`);
+        if(message) {
+            console.log(`\n${cipher(message)}`);
+        } else {
+            console.log(`\n${cipher('Perhaps more than an empty string')}`);
+        }
         read.close();
     });
 
