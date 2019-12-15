@@ -89,3 +89,7 @@ a === a
 ```
 
 Even though the letter at the center is not considered however, you can see that checking the counter-part is unnecessary. Inefficient even. This is the same consideration which makes looping through the _entire_ array a similar, unhelpful addition.
+
+## Projects
+
+-   [Palindrome Checker](https://codepen.io/borntofrappe/full/GRgjxYo). Developed with React and displaying an icon depending on the value of an input of type text.
