@@ -46,7 +46,7 @@ function convertToRoman(num) {
 
     const largestNumber = descendingNumbers.find(d => d <= num);
     let roman = convertToRoman(num - largestNumber);
-    roman = `${combinations[largestNumber]}${roman}`;
+    roman = `${combinations[largestNumber].toUpperCase()}${roman}`;
     return roman;
 }
 
