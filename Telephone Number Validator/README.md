@@ -92,7 +92,7 @@ Altogether, completing the challenge with the promised single regular expression
 const regex = /(1? ?\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}/;
 ```
 
-## Failure
+### Failure
 
 Alas, the project is not over. While the regular expression accounts for the five conditions, it does so in a vacuum. Include it in [the editor provided @freecodecamp](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/telephone-number-validator):
 
@@ -121,7 +121,7 @@ The input `2 (757) 622-7382` likewise because of `(757) 622-7382`.
 
 And to reiterate the point `(555-555-5555` because of `555-555-5555`.
 
-It becomes necessary to consider the beginning and the end of the input string, and this is allowed by the special characters [`^`]() and [`$`]().
+It becomes necessary to consider the beginning and the end of the input string, and this is allowed by the special characters [`^`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-caret) and [`$`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-dollar).
 
 Perhaps most importantly, it might be beneficial to also re-consider what makes a valid input number:
 
@@ -137,7 +137,7 @@ Perhaps most importantly, it might be beneficial to also re-consider what makes 
   const regex = /^1? ?/;
   ```
 
-- for the first three digits, consider the possibility that these might be surrounded by parenthesis. To check for a pattern _or_ another, use the `|` special character
+- for the first three digits, consider the possibility that these might be surrounded by parenthesis. To check for a pattern _or_ another, use the [`|`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#special-or) special character
 
   ```js
   const regex = /^1? ?(\d{3}|\(\d{3}\))/;
@@ -158,3 +158,7 @@ Leading us to the final, working solution.
 ```js
 const regex = /^1? ?(\d{3}|\(\d{3}\))[- ]?\d{3}[- ]?\d{4}$/;
 ```
+
+## Projects
+
+- [Contact US](https://codepen.io/borntofrappe/full/PowJQew). An interactive form using the `telephoneCheck` function with React, `useState` and `useEffect`.
