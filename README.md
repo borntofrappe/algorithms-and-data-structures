@@ -9,3 +9,5 @@
 ## [Roman Numeral Converter](https://svelte.dev/repl/ce67640a4c034cfa8585f3555fff3f8d)
 
 ## [Telephone Number Validator](https://codepen.io/borntofrappe/full/PowJQew)
+
+## Cash Register
