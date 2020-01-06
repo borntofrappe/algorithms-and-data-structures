@@ -209,3 +209,10 @@ const currency = [
   }
 ];
 ```
+
+## Solution
+
+In `script.js`, you find the function clearing the project. It is thoroughly documented with a series of comments, but here I'd like to stress the crucial part in which the desired data structure is built from the `cid` array and from the array describing the unit value of the different cuts.
+
+The goal is to provide an array of objects which contemplates the amount available and the unitary value in the same scope. In this manner, it becomes incredibly more convenient to retrieve the currency relative to the change left, and update the `status` and `change` variables accordingly.
+
