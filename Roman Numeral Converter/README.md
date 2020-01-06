@@ -13,4 +13,6 @@ The solution as provided in `script.js` allows to convert every integer provided
 
 ## Projects
 
--   [Roman Clock](https://svelte.dev/repl/95e655ad640b4257961b5311b29c4a0f). A project using the Svelte compiler and a readable store to highlight the current time through roman numerals.
+- [Roman Clock](https://svelte.dev/repl/95e655ad640b4257961b5311b29c4a0f). A project using the Svelte compiler and a readable store to highlight the current time through roman numerals.
+
+- [Roman Clock](https://svelte.dev/repl/ce67640a4c034cfa8585f3555fff3f8d). Svelte and SVG syntax taking the information retrieved through the readable store in a classical design.

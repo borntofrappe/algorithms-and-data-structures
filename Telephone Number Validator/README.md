@@ -161,4 +161,6 @@ const regex = /^1? ?(\d{3}|\(\d{3}\))[- ]?\d{3}[- ]?\d{4}$/;
 
 ## Projects
 
-- [Contact US](https://codepen.io/borntofrappe/full/PowJQew). An interactive form using the `telephoneCheck` function with React, `useState` and `useEffect`.
+- [Contact US](https://codepen.io/borntofrappe/full/PowJQew). An interactive and animated form using the `telephoneCheck` function within React
+
+- [Contact US](https://njbcg.codesandbox.io/). An interactive contact card with Svelte and 3D transform properties.
