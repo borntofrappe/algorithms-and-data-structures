@@ -43,8 +43,8 @@ function checkCashRegister(price, cash, cid) {
   /* starting from the cid array, create an array of objects with the following information
   {
     name: 'PENNY',
-    unit: 0.01
-    amount: x,
+    amount,
+    unit: 0.01,
   }
   */
   const register = cid
@@ -80,12 +80,12 @@ function checkCashRegister(price, cash, cid) {
       break;
     } else {
       // else consider the available currency
-      const { name, amount } = availableCurrency;
+      const { name, unit, amount } = availableCurrency;
       // reduce the change due and the amount of the available currency
-      const value = Math.min(changeDue, amount);
-      changeDue -= value;
-      availableCurrency.amount -= value;
-
+      const value = amount > changeDue ? Math.floor(changeDue / unit) * unit : amount;
+      console.log(changeDue)
+      changeDue = Math.round((changeDue - value) * 100) / 100;
+      availableCurrency.amount = Math.round((amount - value) * 100) / 100;
       // add the name and amount to the change array
       change.push([name, value]);
     }
@@ -112,40 +112,52 @@ function checkCashRegister(price, cash, cid) {
 }
 
 // test three possible scenarios
-const available = checkCashRegister(19.5, 20, [
-  ['PENNY', 1.01],
-  ['NICKEL', 2.05],
-  ['DIME', 3.1],
-  ['QUARTER', 4.25],
-  ['ONE', 90],
-  ['FIVE', 55],
-  ['TEN', 20],
-  ['TWENTY', 60],
-  ['ONE HUNDRED', 100],
+// const available = checkCashRegister(19.5, 20, [
+//   ['PENNY', 1.01],
+//   ['NICKEL', 2.05],
+//   ['DIME', 3.1],
+//   ['QUARTER', 4.25],
+//   ['ONE', 90],
+//   ['FIVE', 55],
+//   ['TEN', 20],
+//   ['TWENTY', 60],
+//   ['ONE HUNDRED', 100],
+// ]);
+
+// const unavailable = checkCashRegister(19.5, 20, [
+//   ['PENNY', 0],
+//   ['NICKEL', 0],
+//   ['DIME', 0],
+//   ['QUARTER', 0],
+//   ['ONE', 0],
+//   ['FIVE', 10],
+//   ['TEN', 0],
+//   ['TWENTY', 0],
+//   ['ONE HUNDRED', 0],
+// ]);
+
+// const closed = checkCashRegister(19.5, 20, [
+//   ['PENNY', 0],
+//   ['NICKEL', 0],
+//   ['DIME', 0.5],
+//   ['QUARTER', 0],
+//   ['ONE', 0],
+//   ['FIVE', 0],
+//   ['TEN', 0],
+//   ['TWENTY', 0],
+//   ['ONE HUNDRED', 0],
+// ]);
+
+const failingTest = checkCashRegister(3.26, 100, [
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
 ]);
 
-const unavailable = checkCashRegister(19.5, 20, [
-  ['PENNY', 0],
-  ['NICKEL', 0],
-  ['DIME', 0],
-  ['QUARTER', 0],
-  ['ONE', 0],
-  ['FIVE', 10],
-  ['TEN', 0],
-  ['TWENTY', 0],
-  ['ONE HUNDRED', 0],
-]);
-
-const closed = checkCashRegister(19.5, 20, [
-  ['PENNY', 0],
-  ['NICKEL', 0],
-  ['DIME', 0.5],
-  ['QUARTER', 0],
-  ['ONE', 0],
-  ['FIVE', 0],
-  ['TEN', 0],
-  ['TWENTY', 0],
-  ['ONE HUNDRED', 0],
-]);
-
-console.log(available);
+console.log(failingTest);

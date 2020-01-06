@@ -216,3 +216,81 @@ In `script.js`, you find the function clearing the project. It is thoroughly doc
 
 The goal is to provide an array of objects which contemplates the amount available and the unitary value in the same scope. In this manner, it becomes incredibly more convenient to retrieve the currency relative to the change left, and update the `status` and `change` variables accordingly.
 
+## Update
+
+Using the function on the [freeCodeCamp](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/cash-register) platform clears every test but the following:
+
+```js
+checkCashRegister(3.26, 100, [
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+]);
+```
+
+If you log this instance, you'd actually see this result:
+
+```js
+{
+  status: 'OPEN',
+  change: [ [ 'TWENTY', 60 ], [ 'TEN', 20 ], [ 'FIVE', 16.739999999999995 ] ]
+}
+```
+
+Prompting a discussion regarding the precision of the different mathematical operations. What is happening here:
+
+- the function subtracts `60` and `20` using the twenty and ten cuts. This leads to `16.74`
+
+- in this situation, the function should continue and subtract `15` using cuts of 5, but instead subtracts the whole lot with a rounding error just for good measure.
+
+This error boils down to the following line:
+
+```js
+const value = Math.min(changeDue, amount);
+```
+
+In a situation in which the amount is greater than the change, such when you have `55` in five dollars and `16.74` left in change, `value` describes the change due entirely, disregarding the fact that the sum cannot account for such a decimal. It becomes necessary to consider the value as the amount _or_ as much as possible in the described cut.
+
+```js
+const value = amount > changeDue ? Math.floor(changeDue / unit) * unit : amount;
+```
+
+Even with this fix however, the test fails for the same function call. This time around, it has to do with the rounding error. Indeed, by logging the `changeDue` variable we can see how the numbers following the decimal points are messed up after the first subtraction:
+
+```code
+96.74
+36.739999999999995
+16.739999999999995
+1.7399999999999949
+0.7399999999999949
+0.23999999999999488
+0.03999999999999487
+```
+
+In this situation the while loop subtracts 3 penny and is left with a `0.0099` that cannot be exchanged, giving light to the status `INSUFFICIENT_FUNDS`.
+
+To solve this issue, it is necessary to round the number to at most two decimal points. After all, we are working with at most cents.
+
+```js
+changeDue = Math.round((changeDue - value) * 100) / 100;
+availableCurrency.amount = Math.round((amount - value) * 100) / 100;
+```
+
+Here we use `Math.round` to round to the nearest integer. Using `Math.floor` causes to round toward the lowest integer, which for the specific case forces the change due to essentially skip using pennies. Looking at the change due with this rounding:
+
+```code
+96.74
+36.73
+16.72
+1.71
+0.71
+0.2
+```
+
+The function would use two dimes and call it quits.
